@@ -127,7 +127,7 @@
 
 \newcommand{\misisauthor}[4]{%
   \stepcounter{misis@authorcount}%
-  \ifnum\value{misis@authorcount}<3
+  \ifnum\value{misis@authorcount}=1
     \g@addto@macro\misis@authorsleft{\misis@authorblock{#1}{#2}{#3}{#4}}%
   \else
     \g@addto@macro\misis@authorsright{\misis@authorblock{#1}{#2}{#3}{#4}}%
