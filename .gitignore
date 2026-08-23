@@ -1,0 +1,23 @@
+# Build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+*.xdv
+
+# Local PDF of blank template (example.pdf is kept as reference)
+article.pdf
+
+# OS / editor
+.DS_Store
+*.swp
+*~
+.idea/
+.vscode/
