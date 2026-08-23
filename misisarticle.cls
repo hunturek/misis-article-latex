@@ -1,10 +1,10 @@
-% MISiS article template — оформление по Article_1.docx
+% MISiS article template — оформление по Article_1.docx (IEEE-style, 2 columns)
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{misisarticle}[2026/08/22 v1.0 MISiS article template]
+\ProvidesClass{misisarticle}[2026/08/23 v1.1 MISiS article template]
 
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ProcessOptions\relax
-\LoadClass[12pt, a4paper]{article}
+\LoadClass[10pt, twocolumn, a4paper]{article}
 
 \author{}
 \date{}
@@ -12,12 +12,13 @@
 \RequirePackage[
   top=1.9cm,
   bottom=2.54cm,
-  left=1.6cm,
-  right=1.6cm,
+  left=1.57cm,
+  right=1.57cm,
   headheight=14pt,
   headsep=0.5cm,
   footskip=1cm
 ]{geometry}
+\setlength{\columnsep}{0.635cm}
 
 \RequirePackage{fontspec}
 \RequirePackage{polyglossia}
@@ -46,7 +47,6 @@
   pdfborder={0 0 0}
 }
 
-% --- Шрифт Times New Roman (как в docx) ---
 \IfFontExistsTF{Times New Roman}{%
   \setmainfont{Times New Roman}[
     Ligatures=TeX,
@@ -73,23 +73,20 @@
   \newfontfamily\cyrillicfonttt{TeX Gyre Cursor}%
 }
 
-% --- Основной текст: 12 pt, абзацный отступ 0.51 cm ---
 \setlength{\parindent}{0.51cm}
 \setlength{\parskip}{0pt plus 1pt minus 1pt}
 \setstretch{1.0}
 
-% --- Списки ---
 \setlist[itemize]{
   label=\textbullet,
-  leftmargin=1.02cm,
-  labelsep=0.35cm,
+  leftmargin=0.9cm,
+  labelsep=0.25cm,
   topsep=0pt,
   partopsep=0pt,
   itemsep=0pt,
   parsep=0pt
 }
 
-% --- Классификационные коды (ГРНТИ, ASJC, OECD) ---
 \newcommand{\@grnticodes}{}
 \newcommand{\@asjccodes}{}
 \newcommand{\@oecdcodes}{}
@@ -109,26 +106,42 @@
     \ifx\@oecdcodes\empty\else
       OECD коды\par\@oecdcodes\par
     \fi
-    \vspace{0.4\baselineskip}%
+    \vspace{0.3\baselineskip}%
   }%
 }
 
-% --- Авторы ---
-\newcommand{\@authorblocks}{}
+\makeatletter
+\newcounter{misis@authorcount}
+\newcommand{\misis@authorsleft}{}
+\newcommand{\misis@authorsright}{}
+
+\newcommand{\misis@authorblock}[4]{%
+  {\fontsize{11}{13}\selectfont
+    #1\par
+    #2\par
+    #3\par
+    \href{mailto:#4}{#4}\par
+    \vspace{0.35\baselineskip}}%
+}
+
 \newcommand{\misisauthor}[4]{%
-  \g@addto@macro\@authorblocks{%
-    {\fontsize{11}{13}\selectfont
-      #1\par
-      #2\par
-      #3\par
-      \href{mailto:#4}{#4}\par
-      \vspace{0.35\baselineskip}%
-    }%
-  }%
+  \stepcounter{misis@authorcount}%
+  \ifnum\value{misis@authorcount}<3
+    \g@addto@macro\misis@authorsleft{\misis@authorblock{#1}{#2}{#3}{#4}}%
+  \else
+    \g@addto@macro\misis@authorsright{\misis@authorblock{#1}{#2}{#3}{#4}}%
+  \fi
 }
 
-% --- Аннотация и ключевые слова ---
-% article.cls уже определяет окружение abstract — переопределяем
+\newcommand{\@authorcolumns}{%
+  \begin{minipage}[t]{0.48\textwidth}
+    \misis@authorsleft
+  \end{minipage}\hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \misis@authorsright
+  \end{minipage}%
+}
+
 \let\abstract\relax
 \let\endabstract\relax
 \newcommand{\@abstracttext}{}
@@ -138,52 +151,55 @@
 \newcommand{\abstract}[1]{\setabstract{#1}}
 \newcommand{\keywords}[1]{\setkeywords{#1}}
 
-% --- Заголовок ---
 \renewcommand{\maketitle}{%
-  \thispagestyle{empty}%
-  \@classificationblock
-  \begin{center}
-    {\fontsize{24}{28}\selectfont \@title\par}
-    \vspace{0.6\baselineskip}
-    \@authorblocks
-  \end{center}
-  \vspace{0.2\baselineskip}
+  \twocolumn[%
+    \thispagestyle{empty}%
+    \@classificationblock
+    \begin{center}
+      {\fontsize{24}{28}\selectfont \@title\par}
+      \vspace{0.4\baselineskip}
+      \@authorcolumns
+    \end{center}
+    \vspace{0.2\baselineskip}%
+  ]%
   \ifx\@abstracttext\empty\else
     {\parindent=0.51cm
      \textbf{Аннотация}—\@abstracttext\par
-     \vspace{0.35\baselineskip}}%
+     \vspace{0.25\baselineskip}}%
   \fi
   \ifx\@keywordstext\empty\else
     {\parindent=0.48cm
      \textit{Ключевые слова — \@keywordstext}\par
-     \vspace{0.35\baselineskip}}%
+     \vspace{0.25\baselineskip}}%
   \fi
 }
+\makeatother
 
-% --- Разделы (heading 1: small caps; heading 2: italic) ---
-\setcounter{secnumdepth}{0}
+\setcounter{secnumdepth}{2}
+\renewcommand{\thesection}{\Roman{section}}
+\renewcommand{\thesubsection}{\Alph{subsection}}
+
 \titleformat{\section}
   {\normalfont\scshape\raggedright}
-  {}
-  {0pt}
-  {}
+  {\thesection.}
+  {0.4em}
+  {\MakeUppercase}
 \titlespacing*{\section}{0pt}{8pt}{4pt}
 
 \titleformat{\subsection}
   {\normalfont\itshape\raggedright}
-  {}
-  {0pt}
+  {\thesubsection.}
+  {0.4em}
   {}
 \titlespacing*{\subsection}{0pt}{6pt}{3pt}
 
 \titleformat{\subsubsection}
-  {\normalfont\itshape\justifying}
+  {\normalfont\itshape\raggedright}
   {}
   {0pt}
   {}
 \titlespacing*{\subsubsection}{0pt}{4pt}{2pt}
 
-% --- Подписи рисунков и таблиц ---
 \addto\captionsrussian{%
   \renewcommand{\figurename}{Рис.}%
   \renewcommand{\tablename}{Таблица}%
@@ -212,15 +228,12 @@
 \DeclareCaptionLabelFormat{misistable}{\scshape #1~#2}
 \captionsetup[table]{labelformat=misistable}
 
-% Текст в таблице — 8 pt
 \AtBeginEnvironment{table}{\small}
 
-% --- Формулы ---
-\setlength{\abovedisplayskip}{8pt plus 2pt minus 2pt}
-\setlength{\belowdisplayskip}{8pt plus 2pt minus 2pt}
+\setlength{\abovedisplayskip}{6pt plus 2pt minus 2pt}
+\setlength{\belowdisplayskip}{6pt plus 2pt minus 2pt}
 
-% --- Список литературы ---
-\renewcommand{\refname}{Литература}
+\renewcommand{\refname}{ЛИТЕРАТУРА}
 
 \AtBeginEnvironment{thebibliography}{%
   \small
