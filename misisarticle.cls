@@ -37,6 +37,7 @@
 \RequirePackage{setspace}
 \RequirePackage{titlesec}
 \RequirePackage[hyphens]{url}
+\RequirePackage{xurl}
 \RequirePackage{hyperref}
 
 \hypersetup{
@@ -180,7 +181,7 @@
 \renewcommand{\thesubsection}{\Alph{subsection}}
 
 \titleformat{\section}
-  {\normalfont\scshape\raggedright}
+  {\normalfont\scshape\centering}
   {\thesection.}
   {0.4em}
   {\MakeUppercase}
@@ -235,10 +236,34 @@
 
 \renewcommand{\refname}{ЛИТЕРАТУРА}
 
-\AtBeginEnvironment{thebibliography}{%
+% Список литературы: заголовок по центру, [N] и текст на одной строке
+\makeatletter
+\renewenvironment{thebibliography}[1]{%
+  \par\vspace{0.4\baselineskip}%
+  \begin{center}%
+    {\normalfont\scshape\MakeUppercase{\refname}}%
+  \end{center}%
+  \vspace{0.2\baselineskip}%
   \small
-  \setlength{\itemsep}{2pt plus 1pt minus 1pt}%
-  \setlength{\parsep}{0pt}%
+  \list{\@biblabel{\@arabic\c@enumiv}}%
+       {\settowidth\labelwidth{\@biblabel{#1}}%
+        \leftmargin\labelwidth
+        \advance\leftmargin\labelsep
+        \labelsep=0.4em
+        \itemsep=2pt plus 1pt minus 1pt
+        \parsep=0pt
+        \listparindent=0pt
+        \rightmargin=0pt
+        \usecounter{enumiv}%
+        \let\p@enumiv\@empty
+        \renewcommand\theenumiv{\@arabic\c@enumiv}%
+       }%
+  \sloppy
+  \clubpenalty4000
+  \@clubpenalty\clubpenalty
+}{%
+  \endlist
 }
+\makeatother
 
 \endinput
