@@ -99,13 +99,13 @@
   {\fontsize{12}{14}\selectfont
     \raggedright
     \ifx\@grnticodes\empty\else
-      ГРНТИ\par\@grnticodes\par
+      ГРНТИ~\@grnticodes\par
     \fi
     \ifx\@asjccodes\empty\else
-      ASJC\par\@asjccodes\par
+      ASJC~\@asjccodes\par
     \fi
     \ifx\@oecdcodes\empty\else
-      OECD\par\@oecdcodes\par
+      OECD~\@oecdcodes\par
     \fi
     \vspace{0.3\baselineskip}%
   }%
