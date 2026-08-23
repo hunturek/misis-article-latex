@@ -50,12 +50,15 @@
   \item третий пункт.
 \end{itemize}
 
-Пример формулы:
+Пример формулы в строке: мера Жаккара $IoU = \dfrac{|A \cap B|}{|A \cup B|}$.
+
+Нумерованная формула (ссылка в тексте: формула~\eqref{eq:f1}):
 \begin{equation}
-  F_1 = 2 \cdot \frac{P \cdot R}{P + R},
+  F_1 = 2 \cdot \frac{P \cdot R}{P + R}
+       = \frac{2TP}{2TP + FP + FN},
   \label{eq:f1}
 \end{equation}
-где $P$~--- precision, $R$~--- recall.
+где $P$~--- precision, $R$~--- recall, $TP$, $FP$, $FN$~--- число истинно и ложно положительных/отрицательных детекций.
 
 % --- Рисунок ---
 \begin{figure}[htbp]
