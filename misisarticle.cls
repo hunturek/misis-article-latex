@@ -78,6 +78,12 @@
 \setlength{\parskip}{0pt plus 1pt minus 1pt}
 \setstretch{1.0}
 
+% Без переносов слов по всему документу
+\hyphenpenalty=10000
+\exhyphenpenalty=10000
+\tolerance=9999
+\emergencystretch=3em
+
 \setlist[itemize]{
   label=\textbullet,
   leftmargin=0.9cm,
@@ -116,6 +122,8 @@
 \newcommand{\misis@authorsleft}{}
 \newcommand{\misis@authorsright}{}
 
+\newcolumntype{m}[1]{>{\centering\arraybackslash}p{#1}}
+
 \newcommand{\misis@authorblock}[4]{%
   {\fontsize{11}{13}\selectfont
     #1\par
@@ -135,12 +143,12 @@
 }
 
 \newcommand{\@authorcolumns}{%
-  \begin{minipage}[t]{0.48\textwidth}
-    \misis@authorsleft
-  \end{minipage}\hfill
-  \begin{minipage}[t]{0.48\textwidth}
+  \noindent
+  \begin{tabular}{@{}m{0.44\textwidth}@{}m{0.04\textwidth}@{}m{0.44\textwidth}@{}}%
+    \misis@authorsleft &
+    &
     \misis@authorsright
-  \end{minipage}%
+  \end{tabular}%
 }
 
 \let\abstract\relax
@@ -158,19 +166,19 @@
     \@classificationblock
     \begin{center}
       {\fontsize{24}{28}\selectfont \@title\par}
-      \vspace{0.4\baselineskip}
-      \@authorcolumns
+      \vspace{1\baselineskip}
     \end{center}
+    \@authorcolumns
     \vspace{0.2\baselineskip}%
   ]%
   \ifx\@abstracttext\empty\else
     {\parindent=0.51cm
-     \textbf{Аннотация}—\@abstracttext\par
+     \textbf{Аннотация — \@abstracttext}\par
      \vspace{0.25\baselineskip}}%
   \fi
   \ifx\@keywordstext\empty\else
     {\parindent=0.48cm
-     \textit{Ключевые слова — \@keywordstext}\par
+     \textbf{Ключевые слова — \@keywordstext}\par
      \vspace{0.25\baselineskip}}%
   \fi
 }
