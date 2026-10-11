@@ -79,7 +79,6 @@ xelatex article.tex && xelatex article.tex
 |------|------------|
 | `article.tex` | Пустой шаблон |
 | `misisarticle.cls` | Класс оформления |
-| `figures/` | Рисунки своей статьи |
 | `example/` | Эталонная статья для проверки класса, в zip для Overleaf не входит |
 | `example/reference.pdf` | Зафиксированный PDF эталона |
 | `Makefile` | `make article`, `make example`, `make dist` |
