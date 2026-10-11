@@ -80,7 +80,7 @@ xelatex article.tex && xelatex article.tex
 | `article.tex` | Пустой шаблон |
 | `misisarticle.cls` | Класс оформления |
 | `example/` | Эталонная статья для проверки класса, в zip для Overleaf не входит |
-| `example/reference.pdf` | Зафиксированный PDF эталона |
+| `example/build/example.pdf` | Собранный PDF эталона, его можно открыть не компилируя |
 | `Makefile` | `make article`, `make example`, `make dist` |
 
 ## Оформление
@@ -109,11 +109,10 @@ xelatex article.tex && xelatex article.tex
 
 ```bash
 make example
-# PDF сборки: example/build/example.pdf
-# эталон, который make не перезаписывает: example/reference.pdf
+# готовый PDF для просмотра: example/build/example.pdf
 ```
 
-Рядом с `example.tex` лежит ссылка `misisarticle.cls` на класс в корне, поэтому команда `\documentclass` такая же, как в шаблоне. Сравните собранный PDF с `example/reference.pdf` и с исходным Word-документом.
+Рядом с `example.tex` лежит ссылка `misisarticle.cls` на класс в корне, поэтому команда `\documentclass` такая же, как в шаблоне. Готовый PDF уже лежит в `example/build/example.pdf`.
 
 ## Чек-лист перед сдачей
 

@@ -12,10 +12,11 @@
 *.fdb_latexmk
 *.xdv
 *.pdf
-!example/reference.pdf
+!example/build/example.pdf
 
-build/
-example/build/
+/build/
+example/build/*
+!example/build/example.pdf
 dist/
 
 # OS / editor
