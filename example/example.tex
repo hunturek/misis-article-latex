@@ -1,6 +1,9 @@
 % !TEX program = xelatex
-% Пример: статья «Исследование возможности детектирования светофоров»
+% Эталон вёрстки: статья «Исследование возможности детектирования светофоров»
 % Источник: Article_1.docx
+% Сборка из корня репозитория: make example
+% Класс подключён симлинком example/misisarticle.cls → ../misisarticle.cls
+% PDF сборки пишется в example/build/ и не затирает reference.pdf
 \documentclass{misisarticle}
 
 \grnti{47.01.07, 47.01.09}
@@ -9,8 +12,8 @@
 
 \title{Исследование возможности детектирования светофоров}
 
-\misisauthor{Л.~С.~Толстенко}{кафедра инженерной кибернетики НИТУ «МИСиС»}{Москва, Россия}{m1805775@edu.misis.ru}
-\misisauthor{А.~А.~Клейменов}{кафедра инженерной кибернетики НИТУ «МИСиС»}{Москва, Россия}{m1801083@edu.misis.ru}
+\misisauthor{Л.~С.~Толстенко}{кафедра инженерной кибернетики НИТУ «МИСиС»}{Москва, Россия}{student@edu.misis.ru}
+\misisauthor{А.~А.~Клейменов}{кафедра инженерной кибернетики НИТУ «МИСиС»}{Москва, Россия}{student2@edu.misis.ru}
 
 \setabstract{в настоящее время широкое распространение получают беспилотные системы управления различными транспортными средствами, в том числе автомобилями. Управление беспилотным автомобилем предполагает решение задач, связанных с распознаванием объектов дорожной обстановки: пешеходов, автомобилей, препятствий (в виде ям и т. д.), дорожных знаков, разметки, светофоров. Автономные наземные транспортные средства должны быть способны воспринимать сигналы светофора, чтобы ездить по улицам вместе с водителями-людьми. В большинстве случаев водитель-человек может легко идентифицировать соответствующие сигналы светофоров. Методы глубокого обучения показали высокую производительность и точность в данной области. В работе рассматриваются несколько решений с открытым исходным кодом и сравниваются возможности распознавания светофоров по изображениям со стереокамеры на наборе данных LISA.}
 \setkeywords{Компьютерное зрение, Детекция светофоров, Распознавание светофоров, Монокулярная камера, Беспилотные автомобили, YOLO, mAP, LISA}
@@ -49,14 +52,14 @@
 \end{itemize}
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/example/fig01.jpeg}
+  \includegraphics[width=\columnwidth]{figures/fig01.jpeg}
   \caption{Примеры кадров при дневном и ночном освещении}
   \label{fig:1}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/example/fig02.png}
+  \includegraphics[width=\columnwidth]{figures/fig02.png}
   \caption{Примеры классов состояния светофора: а) go, б) goForward, в) goLeft, г) stop, д) stopLeft, е) warning, ж) warningLeft}
   \label{fig:2}
 \end{figure}
@@ -81,14 +84,14 @@
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/example/fig03.png}
+  \includegraphics[width=\columnwidth]{figures/fig03.png}
   \caption{Примеры сложных ситуаций возникновения светофоров в кадре}
   \label{fig:3}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/example/fig04.png}
+  \includegraphics[width=\columnwidth]{figures/fig04.png}
   \caption{Пример кадра видеопоследовательности: два верхних изображения образуют стереопару, левое нижнее – соответствующий кадр широкоугольной камеры, правое нижнее – карта несоответствия}
   \label{fig:4}
 \end{figure}
@@ -117,14 +120,14 @@ YOLOv3 обучалась на 1500 батчах по 64 изображения 
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/example/fig05.png}
+  \includegraphics[width=\columnwidth]{figures/fig05.png}
   \caption{Пример работы системы: 3D-координаты релевантных светофоров с лидара проецируются в 2D-координаты кадра и вокруг них строится 1.5-метровая сфера; релевантными светофорами в кадре считаются те, чьи центры попадают в эту сферу и максимально близко лежат к центру реального светофора}
   \label{fig:5}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/example/fig06.png}
+  \includegraphics[width=\columnwidth]{figures/fig06.png}
   \caption{Архитектура Darknet-53, которая лежит в основе YOLOv3}
   \label{fig:6}
 \end{figure}
@@ -137,7 +140,7 @@ MobileNet [20] – эффективная и более лёгкая архит�
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/example/fig07.png}
+  \includegraphics[width=\columnwidth]{figures/fig07.png}
   \caption{Архитектура SSD-MobileNetV1}
   \label{fig:7}
 \end{figure}
@@ -168,7 +171,7 @@ FN – детектор не нашёл светофор, хотя он есть
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/example/fig08.png}
+  \includegraphics[width=\columnwidth]{figures/fig08.png}
   \caption{Архитектура InceptionV3}
   \label{fig:8}
 \end{figure}
@@ -210,7 +213,7 @@ FN – детектор не нашёл светофор, хотя он есть
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/example/fig09.png}
+  \includegraphics[width=\columnwidth]{figures/fig09.png}
   \caption{Матрица ошибок и численная оценка работы InceptionV3}
   \label{fig:9}
 \end{figure}
@@ -225,14 +228,14 @@ FN – детектор не нашёл светофор, хотя он есть
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/example/fig10.png}
+  \includegraphics[width=\columnwidth]{figures/fig10.png}
   \caption{Переходная 2х7 и обычная матрицы ошибок 2х2 нейросети YOLOv3}
   \label{fig:10}
 \end{figure}
 
 \begin{figure}[htbp]
   \centering
-  \includegraphics[width=\columnwidth]{figures/example/fig11.png}
+  \includegraphics[width=\columnwidth]{figures/fig11.png}
   \caption{Численная оценка качества работы классификатор YOLOv3}
   \label{fig:11}
 \end{figure}

@@ -1,0 +1,1 @@
+../misisarticle.cls

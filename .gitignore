@@ -11,9 +11,12 @@
 *.fls
 *.fdb_latexmk
 *.xdv
+*.pdf
+!example/reference.pdf
 
-# Local PDF of blank template (example.pdf is kept as reference)
-article.pdf
+build/
+example/build/
+dist/
 
 # OS / editor
 .DS_Store
