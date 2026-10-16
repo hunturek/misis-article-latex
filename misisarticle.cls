@@ -83,10 +83,38 @@
   ]%
   \newfontfamily\cyrillicfonttt{Courier New}%
 }{%
-  \setmainfont{TeX Gyre Termes}[Ligatures=TeX]%
-  \newfontfamily\cyrillicfont{TeX Gyre Termes}[Ligatures=TeX]%
-  \newfontfamily\cyrillicfontsf{TeX Gyre Termes}%
-  \newfontfamily\cyrillicfonttt{TeX Gyre Cursor}%
+  % Если Times New Roman не установлен (обычный Linux), fontconfig не видит
+  % семейство «TeX Gyre Termes», пока файлы не открыты по имени из бандла Tectonic.
+  \setmainfont{texgyretermes}[
+    Extension=.otf,
+    UprightFont=*-regular,
+    BoldFont=*-bold,
+    ItalicFont=*-italic,
+    BoldItalicFont=*-bolditalic,
+    Ligatures=TeX,
+  ]%
+  \newfontfamily\cyrillicfont{texgyretermes}[
+    Extension=.otf,
+    UprightFont=*-regular,
+    BoldFont=*-bold,
+    ItalicFont=*-italic,
+    BoldItalicFont=*-bolditalic,
+    Ligatures=TeX,
+  ]%
+  \newfontfamily\cyrillicfontsf{texgyretermes}[
+    Extension=.otf,
+    UprightFont=*-regular,
+    BoldFont=*-bold,
+    ItalicFont=*-italic,
+    BoldItalicFont=*-bolditalic,
+  ]%
+  \newfontfamily\cyrillicfonttt{texgyrecursor}[
+    Extension=.otf,
+    UprightFont=*-regular,
+    BoldFont=*-bold,
+    ItalicFont=*-italic,
+    BoldItalicFont=*-bolditalic,
+  ]%
 }
 
 \setlength{\parindent}{0.51cm}
