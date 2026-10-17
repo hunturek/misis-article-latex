@@ -64,3 +64,17 @@ jobs:
           cp ../misisarticle.cls misisarticle.cls
           mkdir -p build
           tectonic -o build example.tex
+
+      - name: Upload article PDF
+        if: always() && steps.fonts.outcome == 'success' && hashFiles('build/article.pdf') != ''
+        uses: actions/upload-artifact@v7
+        with:
+          path: build/article.pdf
+          archive: false
+
+      - name: Upload example PDF
+        if: always() && steps.fonts.outcome == 'success' && hashFiles('example/build/example.pdf') != ''
+        uses: actions/upload-artifact@v7
+        with:
+          path: example/build/example.pdf
+          archive: false

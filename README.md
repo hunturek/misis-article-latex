@@ -80,7 +80,6 @@ xelatex article.tex && xelatex article.tex
 | `article.tex` | Пустой шаблон |
 | `misisarticle.cls` | Класс оформления |
 | `example/` | Эталонная статья для проверки класса, в zip для Overleaf не входит |
-| `example/build/example.pdf` | Собранный PDF эталона, его можно открыть не компилируя |
 | `Makefile` | `make article`, `make example`, `make dist` |
 
 ## Оформление
@@ -112,7 +111,7 @@ make example
 # готовый PDF для просмотра: example/build/example.pdf
 ```
 
-Рядом с `example.tex` лежит ссылка `misisarticle.cls` на класс в корне, поэтому команда `\documentclass` такая же, как в шаблоне. Готовый PDF уже лежит в `example/build/example.pdf`.
+Рядом с `example.tex` лежит ссылка `misisarticle.cls` на класс в корне, поэтому команда `\documentclass` такая же, как в шаблоне. PDF шаблона и примера можно скачать из артефактов [GitHub Actions](https://github.com/sadekovlar/misis-article-latex/actions): `article.pdf` и `example.pdf`.
 
 ## Чек-лист перед сдачей
 
