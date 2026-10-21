@@ -1,3 +1,11 @@
+# Статья: сборка физических пазлов по фотографии кусочков
+
+Форк шаблона [sadekovlar/misis-article-latex](https://github.com/sadekovlar/misis-article-latex).
+Текст статьи в `article.tex`, рисунки в `figures/`. PDF собирает GitHub Actions:
+вкладка Actions → последний запуск Build → артефакт `article.pdf`.
+
+---
+
 # Шаблон научной статьи НИТУ «МИСиС» (LaTeX)
 
 LaTeX-шаблон статьи для сборника НИТУ «МИСиС»: XeLaTeX, две колонки.  
